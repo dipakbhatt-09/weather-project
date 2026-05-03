@@ -35,7 +35,7 @@ function App() {
 
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/weather/?city=${queryCity}`
+         `${process.env.REACT_APP_API_URL}?city=${queryCity}`
       );
 
       if (res.data.error) {

@@ -193,17 +193,6 @@ body {
   cursor: pointer;
 }
 
-/* MOBILE */
-@media (max-width: 600px) {
-  .recentTop {
-    flex-direction: column;
-  }
-
-  .clearBtn {
-    position: static;
-    margin-top: 10px;
-  }
-}
 
 /* FOOTER */
 
@@ -297,7 +286,6 @@ body {
 }
 
 /* MOBILE */
-
 @media (max-width: 600px) {
 
   .navbar {
@@ -310,10 +298,7 @@ body {
     align-items: center;
   }
 
-  .input {
-    width: 90%;
-  }
-
+  .input,
   .btn {
     width: 90%;
   }
@@ -322,8 +307,13 @@ body {
     width: 90%;
   }
 
+  .recentTop {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .recentList {
-    padding-right: 0;
+    max-width: 100%;
   }
 
   .clearBtn {

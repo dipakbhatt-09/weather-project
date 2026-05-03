@@ -34,8 +34,8 @@ function App() {
     setSuggestions([]);
 
     try {
-      const res = await axios.get(
-         `${process.env.REACT_APP_API_URL}?city=${queryCity}`
+      const res = await
+        axios.get(`https://weather-project-1-izts.onrender.com/api/weather/?city=${queryCity}`
       );
 
       if (res.data.error) {

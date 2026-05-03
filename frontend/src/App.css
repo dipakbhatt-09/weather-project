@@ -1,10 +1,11 @@
-/* BODY */
+/* GLOBAL */
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
-/* APP */
+/*APP WRAPPER*/
 .app {
   min-height: 100vh;
   display: flex;
@@ -21,10 +22,11 @@ body {
   color: white;
 }
 
-/* NAVBAR */
+/* NAVBAR*/
+
 .navbar {
   width: 100%;
-  padding: 15px 25px;
+  padding: 15px 20px;
 
   display: flex;
   justify-content: space-between;
@@ -32,9 +34,11 @@ body {
 
   background: rgba(255,255,255,0.15);
   backdrop-filter: blur(10px);
+
+  box-sizing: border-box;
 }
 
-/* DARK BUTTON */
+/* dark button  */
 .darkBtn {
   width: 45px;
   height: 45px;
@@ -45,6 +49,7 @@ body {
   cursor: pointer;
   font-size: 18px;
 
+  flex-shrink: 0; /* 🔥 prevents cut */
   transition: 0.3s;
 }
 
@@ -52,22 +57,26 @@ body {
   transform: scale(1.1);
 }
 
-/* CONTAINER */
+/* MAIN CONTAINER*/
+
 .container {
   text-align: center;
   margin-top: 40px;
   width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-/* SEARCH */
+/* SEARCH*/
+
 .searchBox {
   position: relative;
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* INPUT */
 .input {
   padding: 12px;
   width: 250px;
@@ -77,7 +86,6 @@ body {
   outline: none;
 }
 
-/* BUTTON */
 .btn {
   padding: 12px 18px;
 
@@ -95,7 +103,8 @@ body {
   transform: scale(1.05);
 }
 
-/* CARD */
+/* WEATHER CARD */
+
 .card {
   margin: 20px auto;
   width: 300px;
@@ -107,56 +116,97 @@ body {
   backdrop-filter: blur(15px);
 
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+  box-sizing: border-box;
 }
 
+
+
 /* RECENT */
+
 .recent {
   margin-top: 25px;
   padding: 10px;
 }
 
-.recent h3 {
+.recentTitle {
+  text-align: center;
   margin-bottom: 10px;
-  font-size: 18px;
 }
 
-/* chip container  */
-.recent p {
-  display: inline-block;
+.recentTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  margin: 5px;
-  padding: 8px 14px;
+  position: relative;
+  width: 100%;
+}
 
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
+.recentList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 
+  width: 100%;
+  max-width: 600px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
   border-radius: 20px;
 
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+
   cursor: pointer;
-  transition: 0.3s;
-
-  font-size: 14px;
-  color: #333;
 }
 
-/* hover effect */
-.recent p:hover {
-  transform: scale(1.05);
-  background: rgba(76, 175, 80, 0.3);
-  color: black;
-}
-
-/* dark mode support */
-.dark .recent p {
+.activeChip {
+  background: #4CAF50;
   color: white;
-  background: rgba(255, 255, 255, 0.1);
 }
 
-.dark .recent p:hover {
-  background: rgba(255, 255, 255, 0.25);
+.deleteBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: red;
+}
+
+.clearBtn {
+  position: absolute;
+  right: 10px;
+  top: 0;
+
+  padding: 6px 12px;
+  border: none;
+  border-radius: 10px;
+
+  background: red;
+  color: white;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .recentTop {
+    flex-direction: column;
+  }
+
+  .clearBtn {
+    position: static;
+    margin-top: 10px;
+  }
 }
 
 /* FOOTER */
+
 .footer {
   margin-top: auto;
   width: 100%;
@@ -167,12 +217,12 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* LOADING */
+/* LOADING / ERROR*/
+
 .loading {
   color: #333;
 }
 
-/* ERROR */
 .error {
   color: #ff4d4d;
   font-weight: bold;
@@ -184,7 +234,8 @@ body {
   display: inline-block;
 }
 
-/* SUGGESTIONS */
+/* SUGGESTIONS*/
+
 .suggestBox {
   position: absolute;
   top: 45px;
@@ -209,14 +260,16 @@ body {
   background: #eee;
 }
 
-
+/* WEATHER EFFECTS */
 
 .rain {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
+
   background-image: url("https://i.imgur.com/6QZ8b1Q.png");
   animation: rainMove 0.3s linear infinite;
   opacity: 0.2;
@@ -228,14 +281,12 @@ body {
   to { background-position: 0 100px; }
 }
 
-
-
 .sun {
   position: fixed;
   top: 80px;
-  right: 80px;
-  font-size: 60px;
+  right: 20px;
 
+  font-size: 60px;
   animation: floatSun 3s ease-in-out infinite;
 }
 
@@ -245,9 +296,14 @@ body {
   100% { transform: translateY(0px); }
 }
 
-
+/* MOBILE */
 
 @media (max-width: 600px) {
+
+  .navbar {
+    flex-direction: row;
+    padding: 12px;
+  }
 
   .searchBox {
     flex-direction: column;
@@ -266,88 +322,17 @@ body {
     width: 90%;
   }
 
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-/* title center */
-.recentTitle {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-/* main container */
-.recentTop {
-  position: relative;
-  display: flex;
-  justify-content: center;  
-  align-items: center;
-}
-
-/* chips container */
-.recentList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;  
-  gap: 10px;
-}
-
-/* chip */
-.chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 6px 12px;
-  border-radius: 20px;
-
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(10px);
-
-  cursor: pointer;
-}
-
-/* active */
-.activeChip {
-  background: #4CAF50;
-  color: white;
-}
-
-/* delete */
-.deleteBtn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: red;
-}
-
-/* clear button */
-
-.clearBtn {
-  position: absolute;
-  right: 0;   
-  
-  padding: 6px 12px;
-  border: none;
-  border-radius: 10px;
-
-  background: red;
-  color: white;
-  cursor: pointer;
-}
-
-
-
-
-@media (max-width: 600px) {
-  .recentTop {
-    flex-direction: column;
-     align-items: center;   
+  .recentList {
+    padding-right: 0;
   }
 
   .clearBtn {
+    position: static;
     margin-top: 10px;
+  }
+
+  .sun {
+    right: 10px;
+    font-size: 40px;
   }
 }
